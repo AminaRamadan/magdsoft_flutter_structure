@@ -16,7 +16,13 @@ class LoginScreen extends StatelessWidget {
     return BlocProvider(
       create: (BuildContext context) => GlobalCubit(),
       child: BlocConsumer<GlobalCubit,GlobalState>(
-        listener: (BuildContext context, Object? state) {  },
+        listener: (BuildContext context, Object? state) {
+          if(state is LoginSuccessState){
+            if(state.accountModel.status==200){
+              Navigator.pushReplacementNamed(context, Routes.userDataRoute,arguments: state.accountModel);
+            }
+          }
+        },
         builder: (BuildContext context, state) {
           return Scaffold(
             backgroundColor: AppColor.blue,

@@ -17,7 +17,8 @@ class AppRouter {
       case Routes.registerRoute:
         return MaterialPageRoute(builder: (_) => RegisterScreen());
       case Routes.userDataRoute:
-        return MaterialPageRoute(builder: (_) => UserDataScreen());
+        final accountModel = settings.arguments as AccountModel;
+        return MaterialPageRoute(builder: (_) => UserDataScreen(accountModel: accountModel,));
       default:
         return null;
     }

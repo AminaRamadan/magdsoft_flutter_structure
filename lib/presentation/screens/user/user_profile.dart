@@ -9,13 +9,15 @@ import 'package:magdsoft_flutter_structure/presentation/styles/shared.dart';
 
 
 class UserDataScreen extends StatelessWidget {
-  var formKey = GlobalKey<FormState>();
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var phoneController = TextEditingController();
+  const UserDataScreen({Key? key , required this.accountModel}): super(key:key);
+
 
   @override
   Widget build(BuildContext context) {
+    var formKey = GlobalKey<FormState>();
+    var nameController = TextEditingController();
+    var emailController = TextEditingController();
+    var phoneController = TextEditingController();
     return BlocConsumer<GlobalCubit, GlobalState>(
       listener: (context, state) {},
       builder: (context, state) {
