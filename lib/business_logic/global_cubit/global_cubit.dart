@@ -11,23 +11,23 @@ class GlobalCubit extends Cubit<GlobalState> {
 
   static GlobalCubit get(context) => BlocProvider.of(context);
 
-  AccountModel accountModel = AccountModel();
+  AccountModel? accountModel ;
 
   void UserLogin({
-  required String email,
-  required String password,
-}){
+    required String email,
+    required String password,
+  }){
     emit(LoginLoadingState());
     DioHelper.postData(
-        url: LOGIN,
-        body: {
-          'email': email,
-          'password': password,
-        },
+      url: LOGIN,
+      body: {
+        'email': email,
+        'password': password,
+      },
     ).then((value) {
       print(value.data);
       accountModel = AccountModel.fromJson(value.data);
-      emit(LoginSuccessState(accountModel));
+      emit(LoginSuccessState(accountModel!));
     }).catchError((error){
       emit(LoginErrorState(error.toString()));
     });
@@ -54,7 +54,7 @@ class GlobalCubit extends Cubit<GlobalState> {
     ).then((value) {
 
       accountModel = AccountModel.fromJson(value.data);
-      emit(RegisterSuccessState(accountModel));
+      emit(RegisterSuccessState(accountModel!));
     }).catchError((error){
       emit(RegisterErrorState(error.toString()));
     });
@@ -71,7 +71,7 @@ class GlobalCubit extends Cubit<GlobalState> {
     ).then((value) {
       accountModel = AccountModel.fromJson(value.data);
 
-      emit(AccountDataSuccessState(accountModel));
+      emit(AccountDataSuccessState(accountModel!));
     }).catchError((error) {
       print(error.toString());
       emit(AccountDataErrorState());
